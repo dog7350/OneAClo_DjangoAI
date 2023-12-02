@@ -1,3 +1,5 @@
+#-*- coding:utf-8 -*-
+
 import oracledb
 
 oracledb.init_oracle_client()

@@ -1,3 +1,5 @@
+#-*- coding:utf-8 -*-
+
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -18,16 +20,25 @@ def memberAddress(req) :
     return Response(data)
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def inquiryChart(req) :
-    return ""
+    data = chartService.inquiryChart(req.data['age'], req.data['gender'], req.data['year'], req.data['month'])
+    return Response(data)
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def orderChart(req) :
-    return ("")
+    data = chartService.orderChart(req.data['age'], req.data['gender'], req.data['year'], req.data['month'])
+    return Response(data)
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def dataAnalysis(req) :
-    return ""
+    data  = None
+
+    if (req.data['flag'] == 'i') :
+        data = dataService.inquiryAnalysis(req.data['age'], req.data['gender'], req.data['year'], req.data['month'])
+    else :
+        data = dataService.orderAnalysis(req.data['age'], req.data['gender'], req.data['year'], req.data['month'])
+
+    return Response(data)
