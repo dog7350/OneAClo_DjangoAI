@@ -27,5 +27,6 @@ urlpatterns = [
     path('member/address', controller.memberAddress),
     path('chart/inquiry', controller.inquiryChart),
     path('chart/order', controller.orderChart),
-    path('data/analysis', controller.dataAnalysis)
+    path('data/analysis', controller.dataAnalysis),
+    path('data/crawling', controller.webCrawling)
 ]

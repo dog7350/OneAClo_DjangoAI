@@ -1,8 +1,7 @@
 #-*- coding:utf-8 -*-
 
-from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
+from rest_framework.response import Response
 from module import memberService
 from module import chartService
 from module import dataService
@@ -38,7 +37,12 @@ def dataAnalysis(req) :
 
     if (req.data['flag'] == 'i') :
         data = dataService.inquiryAnalysis(req.data['age'], req.data['gender'], req.data['year'], req.data['month'])
-    else :
+    elif (req.data['flag'] == 'o') :
         data = dataService.orderAnalysis(req.data['age'], req.data['gender'], req.data['year'], req.data['month'])
 
+    return Response(data)
+
+@api_view(["POST"])
+def webCrawling(req) :
+    data = dataService.webCrawling(req.data['age'], req.data['gender'], req.data['category'], req.data['useragent'])
     return Response(data)

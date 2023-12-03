@@ -1,7 +1,6 @@
 #-*- coding:utf-8 -*-
 
 from module import OracleDB as odb
-import numpy as np
 import pandas as pd
 
 
@@ -24,9 +23,7 @@ def memberAgeGender():
     result['female'] = female
     result = result.fillna(0)
 
-    returns = {'label' : result.index, 'legend' : result.columns, 'data' : result}
-
-    return returns
+    return {'label' : result.index, 'legend' : result.columns, 'data' : result}
 
 def memberAddress():
     sql = "SELECT COUNT(*) count, area FROM (SELECT SUBSTR(address, 1, INSTR(address, ' ')) area FROM memberInfo) GROUP BY area"
@@ -39,6 +36,4 @@ def memberAddress():
     area = df[['count']]
     area.index = df['area']
 
-    returns = {'label' : area.index, 'data' : area}
-
-    return returns
+    return {'label' : area.index, 'data' : area}
