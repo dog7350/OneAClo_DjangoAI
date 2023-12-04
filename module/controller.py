@@ -46,3 +46,8 @@ def dataAnalysis(req) :
 def webCrawling(req) :
     data = dataService.webCrawling(req.data['age'], req.data['gender'], req.data['category'], req.data['useragent'])
     return Response(data)
+
+@api_view(["POST"])
+def userRecom(req) :
+    data = dataService.userRecom(req.data['id'], req.data['age'], req.data['gender'])
+    return Response(data)

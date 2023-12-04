@@ -117,3 +117,24 @@ def webCrawling(age, gender, category, useragent) :
         data = {"code" : str(resp.status_code), "headers" : str(resp.headers), "url" : str(resp.url)}
 
     return data
+
+def userRecom(id, age, gender) :
+    data = {}
+    if id == "" :
+        data = inquiryAnalysis(age, gender, '', '')
+        return data
+
+    user = initUserData(age, gender, '', '')
+    curosr = mdb.inquiry.find({"userid":id}, {"_id":0, "pno":0, "bcate":0, "scate":0, "userid":0, "address":0, "_class":0})
+
+    dataList = []
+    for c in curosr : dataList.append(list([c['mcate'], c['age'], c['gender'], c['createdAt'].year, c['createdAt'].month]))
+
+    if len(dataList) <= 10 :
+        data = inquiryAnalysis(age, gender, '', '')
+        return data
+
+    result = modelInitGbc(dataList).predict([[ user['age'], user['gender'], user['year'], user['month'] ]])
+    time.sleep(2)
+
+    return {"category" : result[0], "age" : user["age"]}

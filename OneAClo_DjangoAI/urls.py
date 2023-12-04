@@ -28,5 +28,6 @@ urlpatterns = [
     path('chart/inquiry', controller.inquiryChart),
     path('chart/order', controller.orderChart),
     path('data/analysis', controller.dataAnalysis),
-    path('data/crawling', controller.webCrawling)
+    path('data/crawling', controller.webCrawling),
+    path('data/recom', controller.userRecom)
 ]
