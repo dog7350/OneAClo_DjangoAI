@@ -75,7 +75,7 @@ def inquiryAnalysis(age, gender, year, month) :
 
     if (len(data) > 10) : result = modelInitGbc(data).predict([[ user['age'], user['gender'], user['year'], user['month'] ]])
     else : result = [['데이터가 너무 적습니다']]
-    time.sleep(2)
+    time.sleep(1)
 
     return {"category" : result[0], "age" : user["age"]}
 
@@ -88,7 +88,7 @@ def orderAnalysis(age, gender, year, month) :
 
     if (len(data) > 10) : result = modelInitGbc(data).predict([[ user['age'], user['gender'], user['year'], user['month'] ]])
     else : result = [['데이터가 너무 적습니다']]
-    time.sleep(2)
+    time.sleep(1)
 
     return {"category" : result[0], "age" : user["age"]}
 
@@ -135,6 +135,5 @@ def userRecom(id, age, gender) :
         return data
 
     result = modelInitGbc(dataList).predict([[ user['age'], user['gender'], user['year'], user['month'] ]])
-    time.sleep(2)
 
     return {"category" : result[0], "age" : user["age"]}
