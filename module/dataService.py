@@ -9,6 +9,7 @@ from datetime import datetime
 import pandas as pd
 import requests
 import time
+import random
 
 
 def initUserData(age, gender, year, month):
@@ -22,7 +23,8 @@ def initUserData(age, gender, year, month):
         str["age"] = int(age) / 10 * 10
 
     if (gender == 'male') : str["gender"] = 1
-    else : str["gender"] = 0
+    elif (gender == 'female') : str["gender"] = 0
+    else : str["gender"] = random.randint(0, 1)
 
     if year != '' or month != '' :
         str['year'] = int(year)
